@@ -13,5 +13,3 @@ This script requires Python 3 to run
 5. Run the script once without any arguments or input and follow the instructions in the console to complete the authorisation flow.
 
 **Note:** The from address will always be the gmail account used to setup the script.
-
-
