@@ -115,5 +115,6 @@ dmypy.json
 
 # Custom additions
 *.json
+.gmail_token.pickle
 .vscode
 *.txt
