@@ -36,7 +36,7 @@ def init_gmail(config):
             flow = InstalledAppFlow.from_client_secrets_file(
                 CREDENTIALS_FILE_NAME, SCOPES)
             set_windows_hidden_file(CREDENTIALS_FILE_NAME)
-            if config['console_oauth']:
+            if not config or config['console_oauth']:
                 creds = flow.run_console()
             else:
                 creds = flow.run_local_server()
@@ -140,6 +140,8 @@ def main():
     config = get_config()
     if config:
         to = config['rewrite_to']
+        if(not to or to.lower() == 'false'):
+            to = None
     else:
         to = None
 
