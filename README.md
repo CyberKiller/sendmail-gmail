@@ -16,4 +16,4 @@ This script requires Python 3 to run
 ### Notes
 
 * The from address will always be the gmail account used to setup the script.
-* The config file is optional but the script will still display an error about being unable to read the config. Without the config file, `console_oauth` will default to `true`.
+* The config file is optional but the script will still display an error about being unable to read the config. Without the config file, `console_oauth` will default to `false`.
