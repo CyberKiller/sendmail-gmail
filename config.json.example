@@ -1,4 +1,4 @@
 {
 "rewrite_to": "someone@domain.com",
-"console_oauth": true
+"console_oauth": false
 }
