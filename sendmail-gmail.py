@@ -6,6 +6,7 @@ import json
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from google.auth import exceptions
 import base64
 from email.mime.text import MIMEText
 from email.parser import BytesFeedParser
@@ -30,16 +31,12 @@ def init_gmail(config):
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
+            try:
+                creds.refresh(Request())
+            except exceptions.RefreshError:
+                creds = create_creds_pickle(config)
         else:
-            set_windows_hidden_file(CREDENTIALS_FILE_NAME, hidden=False)
-            flow = InstalledAppFlow.from_client_secrets_file(
-                CREDENTIALS_FILE_NAME, SCOPES)
-            set_windows_hidden_file(CREDENTIALS_FILE_NAME)
-            if not config or config['console_oauth']:
-                creds = flow.run_console()
-            else:
-                creds = flow.run_local_server()
+            creds = create_creds_pickle(config)
         # Save the credentials for the next run
         set_windows_hidden_file(TOKENPICKLE_FILE_NAME, hidden=False)
         with open(TOKENPICKLE_FILE_NAME, 'wb') as token:
@@ -102,6 +99,16 @@ def send_message(service, user_id, message):
         return message
     except errors.HttpError as error:
         print('An error occurred: ' + str(error))
+        
+def create_creds_pickle(config):
+    set_windows_hidden_file(CREDENTIALS_FILE_NAME, hidden=False)
+    flow = InstalledAppFlow.from_client_secrets_file(
+        CREDENTIALS_FILE_NAME, SCOPES)
+    set_windows_hidden_file(CREDENTIALS_FILE_NAME)
+    if config['console_oauth']:
+        return flow.run_console()
+    else:
+        return flow.run_local_server()
 
 
 def set_windows_hidden_file(filename, hidden = True):
@@ -140,8 +147,6 @@ def main():
     config = get_config()
     if config:
         to = config['rewrite_to']
-        if(not to or to.lower() == 'false'):
-            to = None
     else:
         to = None
 
