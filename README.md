@@ -10,10 +10,11 @@ This script requires Python 3 to run
 2. Then go to: [Install the Google client library](https://developers.google.com/gmail/api/quickstart/python#install_the_google_client_library) and pip install the listed requirements (I recommend using a python virtual environment for this).
 3. Copy the file `config.json.example` to `config.json`.
 4. Set `rewrite_to` in the config to change the `to` header to redirect all emails to a specific email address. Set to `false` to disable `to` header writing.
-5. ~~Set `console_oauth` in the config to `false` to enable easier browser based authorisation flow. Set to `true` for console based authorisation flow if the system doesn't have have a desktop or web browser.~~ **Unforntunatly google has disabled console based oauth_flow so this feature isn't available until I figure out an alternative way...**
+5. ~~Set `console_oauth` in the config to `false` to enable easier browser based authorisation flow. Set to `true` for console based authorisation flow if the system doesn't have have a desktop or web browser.~~ **Unforntunatly google has disabled console based oauth_flow so this feature isn't available anymore.**
 6. Run the script once without any arguments or input and follow the instructions in the console to complete the authorisation flow.
 
 ### Notes
 
 * The from address will always be the gmail account used to setup the script.
-* The config file is optional but the script will still display an error about being unable to read the config. Without the config file, `console_oauth` will default to `false`.
+* The config file is optional but the script will still display an error about being unable to read the config.
+* For the browser based authentification on a machine without GUI support you may be able to use a console based web browser in another console or ssh session but I haven't personally tested this. Unfortunatly the browser has to be running on the same machine as the script so opening the url on another machine won't work for now.
