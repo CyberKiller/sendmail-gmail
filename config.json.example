@@ -2,8 +2,8 @@
   "rewrite_to": "someone@domain.com",
   "auth_flow_local_server":{
     "host": "localhost",
-    "port": 8080, 
-    "authorization_prompt_message": "Please visit this URL: {url}", 
+    "port": 8080,
+    "authorization_prompt_message": "Please visit this URL: {url}",
     "success_message": "The auth flow is complete; you may close this window.",
     "open_browser": true
   }
