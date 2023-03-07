@@ -18,4 +18,5 @@ This script requires Python 3 to run
 * The from address will always be the gmail account used to setup the script.
 * The config file is optional but the script will still display an error about being unable to read the config.
 * For the browser based authentification on a machine without GUI support you may be able to use a console based web browser in another console or ssh session but I haven't personally tested this.
+* Using X11 forwarding to launch a browser from an ssh terminal may also work.
 * ~~Alternatively configure the auth server in the config file to listen outside of localhost and open the machine on another browser.~~ It seems google doesn't allow this either... **I do not recommend exposing the auth server to the internet or to untrusted local networks!**
