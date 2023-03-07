@@ -105,11 +105,16 @@ def create_creds_pickle(config):
     flow = InstalledAppFlow.from_client_secrets_file(
         CREDENTIALS_FILE_NAME, SCOPES)
     set_windows_hidden_file(CREDENTIALS_FILE_NAME)
-    if config and config['console_oauth']:
-        #google removed console based oauth flow so just throw an error for now
-        #return flow.run_console()
-        print("Sorry, console based authentification isn't supported by google anymore. Please disable 'console_oauth' in the config file. \n The script will now exit.") 
-        exit(1)
+
+    if config:
+        if 'console_oauth' in config and config['console_oauth']:
+            #google removed console based oauth flow so just throw an error for now
+            #return flow.run_console()
+            print("Sorry, console based authentification isn't supported by google anymore. Please disable 'console_oauth' in the config file. \n The script will now exit.") 
+            exit(1)
+        else: 
+            #read and unpack parameters from the config file
+            return flow.run_local_server(**config['auth_flow_local_server'])
     else:
         return flow.run_local_server()
 
