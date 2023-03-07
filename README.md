@@ -10,7 +10,7 @@ This script requires Python 3 to run
 2. Then go to: [Install the Google client library](https://developers.google.com/gmail/api/quickstart/python#install_the_google_client_library) and pip install the listed requirements (I recommend using a python virtual environment for this).
 3. Copy the file `config.json.example` to `config.json`.
 4. Set `rewrite_to` in the config to change the `to` header to redirect all emails to a specific email address. Set to `false` to disable `to` header writing.
-5. **Unforntunatly google has disabled console based oauth_flow so this feature isn't available until I figure out an alternative way...** ~~Set `console_oauth` in the config to `false` to enable easier browser based authorisation flow. Set to `true` for console based authorisation flow if the system doesn't have have a desktop or web browser.~~
+5. ~~Set `console_oauth` in the config to `false` to enable easier browser based authorisation flow. Set to `true` for console based authorisation flow if the system doesn't have have a desktop or web browser.~~ **Unforntunatly google has disabled console based oauth_flow so this feature isn't available until I figure out an alternative way...**
 6. Run the script once without any arguments or input and follow the instructions in the console to complete the authorisation flow.
 
 ### Notes
